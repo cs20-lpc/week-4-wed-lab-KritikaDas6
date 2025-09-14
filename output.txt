@@ -1,0 +1,49 @@
+LinkedList Driver Program
+
+Initial integer list:
+List is empty, no elements to display.
+Length: 0
+Is empty: yes
+
+After appends and inserts:
+5 --> 10 --> 15 --> 20 --> 25
+Error on insert(-1): error, position out of bounds
+Error on insert(100): error, position out of bounds
+
+Getting elements:
+Element at 0: 5
+Element at 3: 20
+Error in getElement(-5): getElement: error, position out of bounds
+
+After replacements:
+5 --> 12 --> 15 --> 20 --> 30
+Error in replace(10): replace: error, position out of bounds
+
+After removals:
+12 --> 15
+Error in remove(-1): remove: error, position out of bounds
+Error in remove(length): remove: error, position out of bounds
+
+Original list:
+12 --> 15
+Copied list:
+12 --> 15 --> 99
+
+Assigned list:
+12 --> 15
+After self-assignment:
+12 --> 15
+
+After clearing original list:
+List is empty, no elements to display.
+Length: 0
+Is empty: yes
+
+After inserting into cleared list:
+77
+Error in getElement after clear: getElement: error, position out of bounds
+
+String list:
+das --> kritika
+Copied string list:
+das --> kritika --> Panigrahi

@@ -231,17 +231,17 @@ int main() {
 
     // testing with strings
     LinkedList<string> names;
-    names.append("Alice");
-    names.append("Bob");
-    names.insert(1, "Eve");
-    names.replace(0, "Zara");
+    names.append("asia");
+    names.append("nav");
+    names.insert(1, "kritika");
+    names.replace(0, "das");
     names.remove(2);
 
     cout << "\nString list:\n";
     cout << names;
 
     LinkedList<string> copiedNames(names);
-    copiedNames.append("Charlie");
+    copiedNames.append("Panigrahi");
 
     cout << "Copied string list:\n";
     cout << copiedNames;

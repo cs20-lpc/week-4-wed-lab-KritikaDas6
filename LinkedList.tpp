@@ -3,7 +3,7 @@ LinkedList<T>::LinkedList()
 : head(nullptr) { }
 
 template <typename T>
-LinkedList<T>::LinkedList(const LinkedList<T>& copyObj) {
+LinkedList<T>::LinkedList(const LinkedList<T>& copyObj) : head(nullptr) {
     copy(copyObj);
 }
 
@@ -54,9 +54,27 @@ void LinkedList<T>::clear() {
     this->length = 0;
 }
 
+
 template <typename T>
 void LinkedList<T>::copy(const LinkedList<T>& copyObj) {
     // TODO
+    head = nullptr;
+    this->length = 0;
+
+    if (copyObj.head == nullptr) { return; }
+
+    head = new Node(copyObj.head->value);
+    this->length = 1;
+
+    Node* curr = head;
+
+    Node* copy = copyObj.head->next;
+    while (copy!= nullptr) {
+        curr->next = new Node(copy -> value); //elem
+        curr = curr->next;
+        this->length++;
+        copy = copy->next;
+    }
 }
 
 template <typename T>
@@ -82,6 +100,24 @@ int LinkedList<T>::getLength() const {
 template <typename T>
 void LinkedList<T>::insert(int position, const T& elem) {
     // TODO
+    if (position < 0 || position > this->length){
+        throw string("error, position out of bounds");
+    }
+
+    Node* new_node = new Node(elem);
+
+    if (position == 0) {
+        new_node->next = head;
+        head = new_node;
+    } else {
+        Node* prev = head;
+        for (int i = 0; i < position - 1; i++ ) {
+            prev = prev->next;
+        }
+        new_node->next = prev->next;
+        prev->next = new_node;
+    }
+    this->length++;
 }
 
 template <typename T>
@@ -92,6 +128,25 @@ bool LinkedList<T>::isEmpty() const {
 template <typename T>
 void LinkedList<T>::remove(int position) {
     // TODO
+    if (position < 0 || position >= this->length) {
+        throw string("remove: error, position out of bounds");
+    }
+    Node* toRemove = nullptr;
+
+    if (position == 0) {
+        toRemove = head;
+        head = head->next;
+    } else {
+        Node* prev = head;
+        for (int i = 0; i < position-1; i++) {
+            prev = prev->next;
+        }
+        toRemove = prev->next;
+        prev->next = toRemove->next;
+    }
+    this->length--;
+    delete toRemove;
+    
 }
 
 template <typename T>
@@ -108,6 +163,8 @@ void LinkedList<T>::replace(int position, const T& elem) {
 
     curr->value = elem;
 }
+
+
 
 template <typename T>
 ostream& operator<<(ostream& outStream, const LinkedList<T>& myObj) {
